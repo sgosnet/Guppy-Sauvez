@@ -1,0 +1,9 @@
+[infos]
+Nom='plg_sv_guppy_v1.2'
+Description="Ce plugin permet de sauvegarder Guppy 5."
+Version='1.2'
+Date='26/06/2016'
+Auteur='Stephane GOSNET'
+
+[check]
+guppy_vmin='5.00.00'

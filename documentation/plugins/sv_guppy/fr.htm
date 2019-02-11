@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>PLUG-IN SAUVEZ GUPPY</title>
+<link type="text/css" rel="stylesheet" href="plug.css">
+</head>
+
+<body bgcolor="#FFEAD5">
+<div align="center">
+  <center>
+  <table border="0" width="80%" cellspacing="4" cellpadding="3">
+    <tr>
+      <td width="100%">
+        <p align="center" class="spantitre"><b>PLUG-IN SAUVEZ GUPPY</b></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p>&nbsp;
+<p><span>&nbsp;<b>1. Présentation&nbsp;</span><br>
+</b><br>
+Ce script constitue un module supplémentaire pour GuppY.<br>
+Certaines variables et fonctions ne fonctionnent qu'avec l'architecture de GuppY : il n'est donc pas question d'utiliser ce module avec d'autres CMS.<br>
+<br>
+Ce plugin est inspiré du plugin Save pour Guppy dans son fonctionnement mais il ne reprend aucune ligne de code de ce dernier (ce n'est pas un fork).<br>
+Les différences avec le plugin Save sont :<br>
+ - prise en compte de fichier à la racine du site.<br>
+ - sauvegarde des répertoires dans une archive unique.<br>
+ - conservation d'un historique de sauvegardes.<br>
+ - utilisation offline du plugin (sans connexion à Guppy) pour une sauvegarde depuis un automate (ex: tâches plannifiées).<br>
+<br> 
+<br>
+<span>&nbsp;<b>2. Fonctionnement&nbsp;</span><br>
+</b><br>
+Ce plug-in, va vous servir à faire des sauvegardes au format zip, des données et/ou fichiers contenus dans votre GuppY :<br><br>
+Deux modes de fonctionnement sont possibles :<br>
+- un mode en ligne, depuis la zone d'administration du plugin.<br>
+- un mode offline, par l'appel directe au script de sauvegarde du plugin.<br>
+<br>
+Le mode offline permet :<br>
+- une planification externe de la sauvegarde avec un appel au script de sauvegarde.<br>
+- la récupération directe de l'archive générée grace à l'option download.<br>
+<br>
+Vous verrez alors apparaître dans la zone Explorateur de ce module des fichiers de sauvegarde:<br>
+- que vous pourrez télécharger sur votre disque dur.<br>
+- que vous pourrez effacer. <br> 
+<br>
+<span>&nbsp;<b>3. Installation&nbsp;</span></b><br>
+<br>
+Ce paragraphe vous explique comment installer ce script sur votre GuppY.<br>
+<br>
+1. Décompressez le fichier plg_svGuppy.zip avec votre programme de décompression favori (WinZip, UltimateZip...), dans le même répertoire que celui dans lequel se trouve GuppY sur votre PC.<br>
+<br>
+2. Dans votre zone "administration", l'icône <img border="0" src="sv_guppy.gif"> c'est tout naturellement positionnée en bas.<br>
+<br><span>&nbsp;<b><font color="#FF0000">REMARQUES IMPORTANTES&nbsp;</font></span><br><br>
+L'arrivée des sélections multiples dans la version 1.1.0 du plugin réorganise le dossier de sauvegarde save+ (situé à la racine du site). Vos anciennes sauvegardes n'apparaitront plus dans l'explorateur.<br>
+Le mieux est de les supprimer manuellement quand d'autres sauvegardes auront été réalisées.<br>
+<br>
+<br>
+<span>&nbsp;<b>4. Utilisation&nbsp;</span><br>
+</b><br>
+<u>1- Zone d'administration</u><br>
+<br>
+Ici vous réglez les options du Plugin :<br>
+- Activer : autorise les sauvegardes par le Plugin.<br>
+- Sesam : Mot de passe ouvrant l'accès à la sauvegarde Offline (Le fait de pouvoir faire une sauvegarde par accès direct au script nécessite la mise en place d'une protection minimale).<br>
+- Rétention : Nombre de fichiers d'archive à conserver (La suppression des fichiers hors rétention se fait à la sauvegarde suivante).<br>
+<br>
+Vous sélectionnez ensuite les dossiers que le plugin doit archiver :<br>
+- . correspond à la racine du site (Les fichiers de la racine).<br>
+- save+ est le dossier destinataire des archives générées par le plugin. Il est toujours exclu des sauvegardes.<br>
+- vous pouvez créer jusqu'à 5 sélections de dossiers que vous pourrez exécuter indépendament.<br>
+<br>
+Si Activer est coché, un lien <img border="0" src="go.png"> s'affiche au pied de chaque sélection de dossiers. Il vous permet de réaliser une sauvegarde immédiate de votre site.<br>
+A la fin de celle-ci, vous êtes redirigé vers l'Explorateur d'archives.<br>
+<br>
+<u>2- Explorateur d'archives</u><br>
+<br>
+Il liste les archives réalisées par le plugin. Le nom des archives est composé de la concaténation de :<br>
+- Année, Mois, Jour,<br>
+- Heures, minutes, secondes,<br>
+- Hash MD5 du Sésam.<br>
+- Ils sont triés par numéro de sélections de dossier et ensuite par date.<br>
+<br>
+Il est possible :<br>
+- De télécharger une archive en cliquant simplement dessus.<br>
+- De supprimer une ou plusieurs archives en les sélectionnant et en cliquant ensuite sur le bouton "Supprimer les archives".<br>
+<br>
+Note : pensez à régler correctement la rétention des archives en fonction du volume des sauvegardes et de l'espace disque disponible.<br>
+<br>
+<span>&nbsp;<b>5. Sauvegarde Offline&nbsp;</span><br></b><br>
+La motivation première de l'écriture du Plugin Sauvez Guppy était pour moi d'avoir la possibilité de programmer des sauvegardes régulières.<br>
+Pour garder l'esprit Guppy qui veut que les plugins doivent rester simples, l'idée était que la planification des sauvegardes devait être gérée en dehors du site Guppy.<br>
+D'autant plus, qu'il est rare d'avoir accès à la planification des serveurs mis à disposition par les hébergeurs...<br>
+<br>
+Il est donc possible de déclencher une sauvegarde de son site sans y être authentifié en appelant l'URL suivante :<br>
+<b>http://monsite/admin/plugins/sv_guppy/sv_guppy_Backup.php</b><br>
+<br>
+<u>1- Paramètres :</u><br><br>
+OBLIGATOIRE : <b>selection=numero</b> ; avec le numéro de sélection de dossiers défini dans la zone d'administration.<br>
+OBLIGATOIRE : <b>sesam=motdepasse</b> ; avec le mot de passe défini dans la zone d'administration.<br>
+OBLIGATOIRE : <b>offline=1</b> ; pour spécifier qu'il s'agit d'une sauvegarde Offline (sinon, retour sur Zone Admin après sauvegarde).<br>
+OPTION : <b>download=1</b> ; pour récupérer le ZIP après sauvegarde.<br>
+<br>
+Pour que la sauvegarde Offline soit réalisée, il faut que :<br>
+- L'option 'Activer' soit cochée dans la zone d'administration du plugin.<br>
+- Des répertoires soient sélectionnés dans la zone d'administration.<br>
+- Le mot de passe passé dans l'URL (codé en format URL) soit identique à celui défini dans les options.<br>
+- Le paramètre offline=1 soit passé dans l'URL.<br>
+<br>
+<u>2- Exemples d'utilisation :</u><br>
+<br>
+<b>http://monsite/admin/plugins/sv_guppy/sv_guppy_Backup.php?selecion=0&sesam=motdepasse&offline=1</b><br>
+La commande ci-dessus déclenche une sauvegarde offline de la sélectin 0. Le script affiche 1 en fin de sauvegarde.<br>
+<br>
+<b>http://monsite/admin/plugins/sv_guppy/sv_guppy_Backup.php?selection=0&sesam=motdepasse&offline=1&download=1</b><br>
+La commande ci-dessus déclenche la même sauvegarde mais le ZIP est téléchargé automatiquement sur le client (navigateur ou wget).<br>
+<br>
+<u>3- Planification :</u><br><br>
+Pour planifier sa sauvegarde, il est possible d'utiliser wget qui, associé à l'option download du ZIP, permet en plus d'externaliser sa sauvegarde.<br>
+Pour en savoir plus sur wget, allez sur http://www.gnu.org/software/wget/<br>
+<br>
+Une autre solution consiste à utiliser un webcron comme www.cronjobs.org ou autres (recherche Google).<br>
+<br>
+<span>&nbsp;<b><font color="#FF0000">REMARQUES IMPORTANTES&nbsp;</span><br>
+</font></b>
+<br>Il ne faut pas perdre à l'esprit que le mot de passe choisi est le seul garant de la non récupération de votre site par un tiers.<br>
+Choisissez le robuste !<br>
+<br>Le fonctionnement de Sauvez Guppy est tributaire des paramétrages du serveur de votre hébergeur. Si la mémoire allouée ou la durée maximale d'un script est trop faible, il faudra prévoir de sauvegarder votre site en plusieurs fois (d'où les sélections de dossiers multiples !).</br>
+<br>Enfin, le plus important : n'oubliez pas que l'intérêt d'une sauvegarde c'est la restauration. Pensez à tester régulièrement vos sauvegardes en décompressant l'archive dans une zone de test.<br>
+<br>
+Stéphane (<a href="mailto:stegos@free.fr">stegos@free.fr</a>) <a href="http://stephane.gosnet.free.fr">http://stephane.gosnet.free.fr</a></p>
+<p align="center"><font size="2" face="Trebuchet MS">[ <a href="APROPOS.htm">RETOUR</a> ]</font></p></p>
+</body></html>
